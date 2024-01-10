@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=FAMILY_NAME:wght@WEIGHT_OR_RANGE&display=swap');
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-button,
+.cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.login-button:hover,
+.cancel-button:hover {
+    opacity: 0.8;
+}
+
+/* Hide the login form when logged in */
+.logged-in .login-container {
+    display: none;
+}
+
+/* Show the welcome message when logged in */
+.logged-in .logo {
+    font-size: 24px;
+}
+.nickname:valid + span::before,
+.password:valid + span::before
+{content: "\2713";
+    color: green;
+    font-size: 20px;
+
+}
