@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px;
+      }
+
+      .day {
+        width: 80px; /* Increased box size */
+        height: 80px; /* Increased box size */
+        border: 1px solid #ccc;
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #fff;
+        transition: background-color 0.3s ease;
+      }
+
+      .marked {
+        background-color: #ff8c8c; /* Red color for marked days */
+      }
+    </style>
+    <title>Interactive Calendar</title>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const daysContainer = document.body;
+
+        // Create the calendar with 75 days
+        for (let i = 1; i <= 75; i++) {
+          const day = document.createElement('div');
+          day.classList.add('day');
+          day.innerText = i;
+
+          // Check if the day is marked in local storage
+          const isMarked = localStorage.getItem(`day_${i}`);
+          if (isMarked) {
+            day.classList.add('marked');
+          }
+
+          day.addEventListener('click', function () {
+            // Toggle the 'marked' class on click
+            this.classList.toggle('marked');
+
+            // Save the marked status in local storage
+            const dayNumber = parseInt(this.innerText);
+            if (this.classList.contains('marked')) {
+              localStorage.setItem(`day_${dayNumber}`, 'marked');
+            } else {
+              localStorage.removeItem(`day_${dayNumber}`);
+            }
+          });
+
+          daysContainer.appendChild(day);
+        }
+      });
+    </script>
+  </body>
+</html>
