@@ -29,6 +29,10 @@
       .marked {
         background-color: #ff8c8c; /* Red color for marked days */
       }
+
+      .double-marked {
+        background-color: #8cff8c; /* Green color for double-marked days */
+      }
     </style>
     <title>Interactive Calendar</title>
   </head>
@@ -50,16 +54,31 @@
             day.classList.add('marked');
           }
 
+          let clickCount = 0; // Initialize click count
+
           day.addEventListener('click', function () {
-            // Toggle the 'marked' class on click
-            this.classList.toggle('marked');
+            clickCount++; // Increment click count on each click
+
+            if (clickCount === 1) {
+              // Toggle 'marked' class on first click
+              this.classList.toggle('marked');
+            } else if (clickCount === 2) {
+              // Toggle 'double-marked' class on second click
+              this.classList.toggle('double-marked');
+              clickCount = 0; // Reset click count after second click
+            }
 
             // Save the marked status in local storage
             const dayNumber = parseInt(this.innerText);
             if (this.classList.contains('marked')) {
               localStorage.setItem(`day_${dayNumber}`, 'marked');
+              localStorage.removeItem(`day_${dayNumber}_double`); // Remove double-marked status
+            } else if (this.classList.contains('double-marked')) {
+              localStorage.removeItem(`day_${dayNumber}`); // Remove single-marked status
+              localStorage.setItem(`day_${dayNumber}_double`, 'double-marked');
             } else {
               localStorage.removeItem(`day_${dayNumber}`);
+              localStorage.removeItem(`day_${dayNumber}_double`);
             }
           });
 
