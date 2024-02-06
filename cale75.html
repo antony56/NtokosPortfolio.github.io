@@ -54,6 +54,11 @@
             day.classList.add('marked');
           }
 
+          const isDoubleMarked = localStorage.getItem(`day_${i}_double`);
+          if (isDoubleMarked) {
+            day.classList.add('double-marked');
+          }
+
           let clickCount = 0; // Initialize click count
 
           day.addEventListener('click', function () {
